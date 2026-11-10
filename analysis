@@ -1,0 +1,74 @@
+CREATE DATABASE
+CREATE DATABASE sql_analytics_lab;
+ 
+-- USE DATABASE
+USE sql_analytics_lab;
+ 
+-- CREATE TABLE
+CREATE TABLE employees (
+emp_id INT PRIMARY KEY,
+emp_name VARCHAR(50),
+department VARCHAR(50),
+salary DECIMAL(10,2),
+city VARCHAR(50),
+joining_date DATE
+);
+ 
+-- INSERT DATA
+INSERT INTO employees VALUES
+(1,'John','Sales',45000,'New York','2022-01-15'),
+(2,'Alice','HR',55000,'Chicago','2021-06-20'),
+(3,'Bob','IT',70000,'Dallas','2020-03-10'),
+(4,'Emma','Sales',48000,'New York','2023-02-11'),
+(5,'David','IT',80000,'Seattle','2019-07-01'),
+(6,'Sophia','Finance',62000,'Chicago','2021-11-18'),
+(7,'James','HR',53000,'Dallas','2022-08-05'),
+(8,'Olivia','Finance',67000,'Seattle','2020-09-15');
+10 SQL Queries
+1. View All Records
+SQL
+SELECT * FROM employees;
+2. Employees in IT Department
+SQL
+SELECT *
+FROM employees
+WHERE department = 'IT';
+3. Salary Greater Than 60000
+SQL
+SELECT emp_name, salary
+FROM employees
+WHERE salary > 60000;
+4. Sort Salary Descending
+SQL
+SELECT emp_name, salary
+FROM employees
+ORDER BY salary DESC;
+5. Count Total Employees
+SQL
+SELECT COUNT(*) AS total_employees
+FROM employees;
+6. Average Salary by Department
+SQL
+SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department;
+7. Highest Salary
+SQL
+SELECT MAX(salary) AS highest_salary
+FROM employees;
+8. Employees Joined After 2021
+SQL
+SELECT emp_name, joining_date
+FROM employees
+WHERE joining_date > '2021-12-31';
+9. Total Salary by City
+SQL
+SELECT city, SUM(salary) AS total_salary
+FROM employees
+GROUP BY city;
+10. Departments Having More Than One Employee
+SQL
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 1;
